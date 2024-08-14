@@ -53,13 +53,17 @@ function completedOrder(orderId: number): Order {
 }
 
 // type narrowing
-function getPizzaDetail(identifier: string | number): PizzaUnion {
-    if( typeof identifier === "string"){
+function getPizzaDetail(identifier: string | number): PizzaUnion | TypeError {
+    if(typeof identifier === "string"){
         return menu.find(pizza => pizza.name.toLowerCase() === identifier.toLowerCase());
-    } else {
+    } else if(typeof identifier === "number") {
         return menu.find(pizza => pizza.id === identifier);
+    } else {
+        throw new TypeError("Pameter `identifier` must be a string or a number")
     }
 }
+
+console.log(getPizzaDetail("nonono")); // because of undefined from find arr method
 
 addNewPizza({id: 5, name: "Chicken Bacon Ranch", price: 12 });
 addNewPizza({id: 6, name: "BBQ Chicken", price: 12 });
