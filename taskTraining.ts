@@ -1,4 +1,5 @@
 type Pizza = {
+    id: number,
     name: string,
     price: number,
 }
@@ -6,14 +7,14 @@ type Pizza = {
 type Order = {
     id: number,
     pizza: Pizza,
-    status: string,
+    status: "ordered" | "completed",
 }
 
 const menu: Pizza[] = [
-    { name: "Margarita", price: 8 },
-    { name: "Peperoni", price: 12 },
-    { name: "Hawaiian", price: 9 },
-    { name: "Veggie", price: 10 },] // Array<Pizza>
+    {id: 1, name: "Margarita", price: 8 },
+    {id: 2, name: "Peperoni", price: 12 },
+    {id: 3, name: "Hawaiian", price: 9 },
+    {id: 4, name: "Veggie", price: 10 },] // Array<Pizza>
 
 let cashInRegister: number = 100;
 let nextOrderId: number = 1;
@@ -51,9 +52,18 @@ function completedOrder(orderId: number): Order {
     return order;
 }
 
-addNewPizza({ name: "Chicken Bacon Ranch", price: 12 });
-addNewPizza({ name: "BBQ Chicken", price: 12 })
-addNewPizza({ name: "Spicy Sausage", price: 11 })
+// type narrowing
+function getPizzaDetail(identifier: string | number): PizzaUnion {
+    if( typeof identifier === "string"){
+        return menu.find(pizza => pizza.name.toLowerCase() === identifier.toLowerCase());
+    } else {
+        return menu.find(pizza => pizza.id === identifier);
+    }
+}
+
+addNewPizza({id: 5, name: "Chicken Bacon Ranch", price: 12 });
+addNewPizza({id: 6, name: "BBQ Chicken", price: 12 });
+addNewPizza({id: 7, name: "Spicy Sausage", price: 11 });
 
 placeOrder("Chicken Bacon Ranch")
 completedOrder(1);

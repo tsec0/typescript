@@ -5,6 +5,21 @@ let name_b: string = "Bob";
 let number: number = 4;
 let isFalse: boolean = false;
 
+// literal type
+const myName = "Tseco"; // no reassigning
+
+// enum type
+type UserRole = "guest" | "member" | "admin";
+let userRole: UserRole = "guest";
+
+type User = {
+    username: string,
+    role: "guest" | "member" | "admin",
+}
+let otherUser: User = {
+    username: "Tseco",
+    role: "member",
+};
 
 // custom types;
 type Food = string;
