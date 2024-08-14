@@ -1,0 +1,2 @@
+# typescript
+ Training typescript repo
