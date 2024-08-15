@@ -25,9 +25,12 @@ function addNewPizza(pizzaObj) {
     menu.push(newPizza);
     return newPizza;
 } // void is for not returning a value
-addNewPizza({ name: "Chicken Bacon Ranch", price: 12 });
-addNewPizza({ name: "BBQ Chicken", price: 12 });
-addNewPizza({ name: "Spicy Sausage", price: 11 });
+function addToArray(array, item) {
+    array.push(item);
+    return array;
+}
+addToArray(menu, { id: nextPizzaId++, name: "Chicken Bacon Ranch", price: 12 });
+addToArray(orderQueue, { id: nextOrderId++, pizza: menu[2], status: "completed" });
 function placeOrder(pizzaName) {
     var selectedPizza = menu.find(function (pizzaObj) { return pizzaObj.name === pizzaName; });
     if (!selectedPizza) {
@@ -62,7 +65,7 @@ function getPizzaDetail(identifier) {
         throw new TypeError("Pameter `identifier` must be a string or a number");
     }
 } // TypeError is not needed because it is thrown (broken / stopped) not returned
-console.log(getPizzaDetail("nonono")); // because of undefined from find arr method
+// console.log(getPizzaDetail("nonono")); // because of undefined from find arr method
 // placeOrder("Chicken Bacon Ranch");
 // placeOrder("Pepperoni");
 // completedOrder(1);
@@ -70,4 +73,4 @@ console.log(getPizzaDetail("nonono")); // because of undefined from find arr met
 // completedOrder(2);
 console.log("Menu:", menu);
 // console.log("Cash in register:", cashInRegister);
-// console.log("Order queue:", orderQueue);
+console.log("Order queue:", orderQueue);

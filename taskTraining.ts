@@ -32,9 +32,19 @@ function addNewPizza(pizzaObj: Omit<Pizza, "id">): Pizza {
     return newPizza;
 } // void is for not returning a value
 
-addNewPizza({ name: "Chicken Bacon Ranch", price: 12 });
-addNewPizza({ name: "BBQ Chicken", price: 12 });
-addNewPizza({ name: "Spicy Sausage", price: 11 });
+// passing the type for the function => Type[] is the array ; Type is the object
+// Type is the passed type for the function props 
+function addToArray<Type>(array: Type[], item: Type): Type[] {
+    array.push(item);
+    return array;
+}
+
+addToArray(menu, {id: nextPizzaId++, name: "Chicken Bacon Ranch", price: 12 });
+addToArray(orderQueue, { id: nextOrderId++, pizza: menu[2], status: "completed" });
+
+// addNewPizza({ name: "Chicken Bacon Ranch", price: 12 });
+// addNewPizza({ name: "BBQ Chicken", price: 12 });
+// addNewPizza({ name: "Spicy Sausage", price: 11 });
 
 type PizzaUnion = Pizza | undefined;
 
@@ -74,7 +84,7 @@ function getPizzaDetail(identifier: string | number): PizzaUnion {
     }
 } // TypeError is not needed because it is thrown (broken / stopped) not returned
 
-console.log(getPizzaDetail("nonono")); // because of undefined from find arr method
+// console.log(getPizzaDetail("nonono")); // because of undefined from find arr method
 
 // placeOrder("Chicken Bacon Ranch");
 // placeOrder("Pepperoni");
@@ -84,4 +94,5 @@ console.log(getPizzaDetail("nonono")); // because of undefined from find arr met
 
 console.log("Menu:", menu);
 // console.log("Cash in register:", cashInRegister);
-// console.log("Order queue:", orderQueue);
+
+console.log("Order queue:", orderQueue);

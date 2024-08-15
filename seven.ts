@@ -14,7 +14,7 @@ const voters: Voter[] = [{ name: "Ivan", age: 42}, {name: "Pesh", age: 34}, {nam
 // <Type> (<T>) - a generic type
 
 function getLastItem<Type>(array: Type[]): Type | undefined {
-    return array[array.length - 1]
+    return array[array.length - 1];
 } // type "any" shuts off TS => thats why we use generics -> <Type> => function fn<Type>(a,b){}
 
 console.log(getLastItem(gameScores));
