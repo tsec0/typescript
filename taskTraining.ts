@@ -33,14 +33,15 @@ function addNewPizza(pizzaObj: Omit<Pizza, "id">): Pizza {
 } // void is for not returning a value
 
 // passing the type for the function => Type[] is the array ; Type is the object
-// Type is the passed type for the function props 
+// Type is the passed type for the function with the type props
 function addToArray<Type>(array: Type[], item: Type): Type[] {
     array.push(item);
-    return array;
+    return array; // returns Pizza[] or Order[] (because see below)
 }
 
-addToArray(menu, {id: nextPizzaId++, name: "Chicken Bacon Ranch", price: 12 });
-addToArray(orderQueue, { id: nextOrderId++, pizza: menu[2], status: "completed" });
+// should pass the type for the {} element 
+addToArray<Pizza>(menu, {id: nextPizzaId++, name: "Chicken Bacon Ranch", price: 12 });
+addToArray<Order>(orderQueue, { id: nextOrderId++, pizza: menu[2], status: "ordered" });
 
 // addNewPizza({ name: "Chicken Bacon Ranch", price: 12 });
 // addNewPizza({ name: "BBQ Chicken", price: 12 });
