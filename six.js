@@ -1,7 +1,8 @@
 var users = [
     { id: 1, username: "john_doe", role: "member" },
     { id: 2, username: "john_doe2", role: "admin" },
-    { id: 3, username: "guest_user", role: "guest" },
+    { id: 3, username: "guest_user", role: "contributor" },
+    { id: 4, username: "charlie_brown", role: "member" }
 ]; // Array<Person>
 function fetchUserdetails(username) {
     var user = users.find(function (user) { return user.username === username; });
@@ -15,7 +16,8 @@ function updateUser(id, updates) {
     // find by id user
     var foundUser = users.find(function (user) { return user.id === id; });
     if (!foundUser) {
-        throw new Error("User not found!");
+        console.error("User not found!");
+        return;
     }
     // Object.assign will update the found user in place
     Object.assign(foundUser, updates);

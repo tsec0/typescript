@@ -1,4 +1,4 @@
-type UserRole2 = "guest" | "member" | "admin";
+type UserRole2 = "contributor" | "member" | "admin";
 
 type User2 = {
     id: number;
@@ -6,12 +6,19 @@ type User2 = {
     role: UserRole2;
 }
 
+type UpdatedUser2 = {
+    id?: number,
+    username?: string,
+    role?: UserRole2
+}
+
 type User2Result = User2 | undefined;
 
 const users: User2[] = [
     {id: 1, username: "john_doe", role: "member" },
     {id: 2, username: "john_doe2", role: "admin" },
-    {id: 3, username: "guest_user", role: "guest" },]; // Array<Person>
+    {id: 3, username: "guest_user", role: "contributor" },
+    {id: 4, username: "charlie_brown", role: "member"}]; // Array<Person>
 
 function fetchUserdetails(username: string): User2 {
     const user: User2Result = users.find(user => user.username === username);
@@ -22,11 +29,12 @@ function fetchUserdetails(username: string): User2 {
     // return user.username;
 }// :string
 
-function updateUser(id: number, updates: any): void {
+function updateUser(id: number, updates: UpdatedUser2): void {
     // find by id user
     const foundUser = users.find(user => user.id === id)
     if(!foundUser){
-        throw new Error("User not found!");
+        console.error("User not found!");
+        return
     }
     // Object.assign will update the found user in place
     Object.assign(foundUser, updates);
