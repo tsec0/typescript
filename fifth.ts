@@ -14,7 +14,7 @@ let userRole: UserRole = "guest";
 
 type User = {
     username: string,
-    role: "guest" | "member" | "admin",
+    role: UserRole,
 }
 let otherUser: User = {
     username: "Tseco",
