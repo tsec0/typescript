@@ -35,6 +35,7 @@ function updateUser(id, updates) {
     Object.assign(foundUser, updates);
 }
 // Omit is a type in which an object property is optional => "id" - optional
+// optional chaning => |
 function addNewUser(newUser) {
     var user = __assign({ id: nextUserId++ }, newUser);
     users.push(user);
