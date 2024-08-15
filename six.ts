@@ -45,7 +45,8 @@ function updateUser(id: number, updates: UpdatedUser2): void {
 }
 
 // Omit is a type in which an object property is optional => "id" - optional
-function addNewUser(newUser: Omit<User2, "id">): User2 {
+// optional chaning => |
+function addNewUser(newUser: Omit<User2, "id" | "user">): User2 {
     const user: User2 = {
         id: nextUserId++,
         ...newUser
