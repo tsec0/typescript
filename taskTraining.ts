@@ -23,14 +23,18 @@ const menu: Pizza[] = [
 
 const orderQueue: Order[] = []; // Array<Order>
 
-function addNewPizza(pizzaObj: Pizza): void{
-    pizzaObj.id = nextPizzaId++;
-    menu.push(pizzaObj);
+function addNewPizza(pizzaObj: Omit<Pizza, "id">): Pizza {
+    const newPizza: Pizza = {
+        id: nextPizzaId ++,
+        ...pizzaObj
+    }
+    menu.push(newPizza);
+    return newPizza;
 } // void is for not returning a value
 
-addNewPizza({id: 0, name: "Chicken Bacon Ranch", price: 12 });
-addNewPizza({id: 0, name: "BBQ Chicken", price: 12 });
-addNewPizza({id: 0, name: "Spicy Sausage", price: 11 });
+addNewPizza({ name: "Chicken Bacon Ranch", price: 12 });
+addNewPizza({ name: "BBQ Chicken", price: 12 });
+addNewPizza({ name: "Spicy Sausage", price: 11 });
 
 type PizzaUnion = Pizza | undefined;
 

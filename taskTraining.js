@@ -1,3 +1,14 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 // hoisting is a mistake in JS
 var nextPizzaId = 1;
 var cashInRegister = 100;
@@ -10,12 +21,13 @@ var menu = [
 ]; // Array<Pizza>
 var orderQueue = []; // Array<Order>
 function addNewPizza(pizzaObj) {
-    pizzaObj.id = nextPizzaId++;
-    menu.push(pizzaObj);
+    var newPizza = __assign({ id: nextPizzaId++ }, pizzaObj);
+    menu.push(newPizza);
+    return newPizza;
 } // void is for not returning a value
-addNewPizza({ id: 0, name: "Chicken Bacon Ranch", price: 12 });
-addNewPizza({ id: 0, name: "BBQ Chicken", price: 12 });
-addNewPizza({ id: 0, name: "Spicy Sausage", price: 11 });
+addNewPizza({ name: "Chicken Bacon Ranch", price: 12 });
+addNewPizza({ name: "BBQ Chicken", price: 12 });
+addNewPizza({ name: "Spicy Sausage", price: 11 });
 function placeOrder(pizzaName) {
     var selectedPizza = menu.find(function (pizzaObj) { return pizzaObj.name === pizzaName; });
     if (!selectedPizza) {
